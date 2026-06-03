@@ -34,38 +34,44 @@
 
 <body>
 
-  <!-- ======================== NAVIGATION ======================== -->
-  <nav class="navbar" id="navbar">
-    <div class="container">
-      <a href="#hero" class="nav-logo">
-        <div class="nav-logo-icon">KM</div>
-        <span>Kunjan Minama</span>
-      </a>
+  <!-- Cursor Glow -->
+  <div class="cursor-glow" id="cursor-glow"></div>
 
-      <div class="nav-links">
-        <a href="#about">About</a>
-        <a href="#skills">Skills</a>
-        <a href="#projects">Projects</a>
-        <a href="#experience">Experience</a>
-        <a href="#github">GitHub</a>
-        <a href="#architecture">Architecture</a>
-        <a href="#contact">Contact</a>
-      </div>
+  <!-- Particles Background -->
+  <canvas class="particles-canvas" id="particles-bg"></canvas>
 
-      <div class="nav-cta">
-        <a href="#contact" class="btn btn-primary">Let's Talk</a>
-      </div>
+  <!-- ======================== FLOATING NAV ======================== -->
+  <nav class="floating-nav" id="floating-nav">
+    <a href="#" class="nav-logo">
+      <div class="nav-logo-icon">KM</div>
+      <span>KM</span>
+    </a>
 
-      <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation">
-        <span></span>
-        <span></span>
-        <span></span>
-      </button>
+    <div class="nav-links">
+      <a href="#hero">Home</a>
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#projects">Projects</a>
+      <a href="#experience">Experience</a>
+      <a href="#github">GitHub</a>
+      <a href="#architecture">Architecture</a>
+      <a href="#contact">Contact</a>
     </div>
+
+    <div class="nav-cta">
+      <a href="#contact" class="btn btn-primary">Let's Talk</a>
+    </div>
+
+    <button class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
   </nav>
 
   <!-- Mobile Menu -->
   <div class="mobile-menu" id="mobile-menu">
+    <a href="#hero">Home</a>
     <a href="#about">About</a>
     <a href="#skills">Skills</a>
     <a href="#projects">Projects</a>
@@ -75,697 +81,601 @@
     <a href="#contact">Contact</a>
   </div>
 
-  <!-- ======================== HERO ======================== -->
-  <section class="hero" id="hero">
-    <canvas class="hero-canvas" id="hero-particles"></canvas>
-    <div class="hero-gradient"></div>
+  <!-- ======================== MAIN PORTFOLIO ======================== -->
+  <main class="portfolio-main">
 
-    <div class="container">
-      <div class="hero-split">
-        <div class="hero-content">
-          <div class="hero-badge">
-            <span class="pulse-dot"></span>
-            Open to Opportunities
-          </div>
-
-          <h1>Building <span class="gradient-text">Production-Grade</span></h1>
-          <div class="hero-typing-wrapper">
-            <span class="hero-typing gradient-text" id="typing-text">AI Systems</span><span class="typing-cursor"></span>
-          </div>
-
-          <p class="hero-description">
-            AI Engineer specializing in Agentic AI, Multi-Agent Systems, LangGraph,
-            RAG Pipelines, MCP Servers, FastAPI and LLM Applications. Transforming
-            complex AI research into scalable, production-ready solutions.
-          </p>
-
-          <div class="hero-buttons">
-            <a href="#projects" class="btn btn-primary">
-              <span class="btn-icon">🚀</span> View Projects
-            </a>
-            <a href="https://drive.google.com/file/d/1PtiLdS9Un6KcDbU9S5uNoPupkltbrCo0/view" class="btn btn-secondary" id="download-resume" target="_blank" rel="noopener noreferrer">
-              <span class="btn-icon">📄</span> Download Resume
-            </a>
-            <a href="#contact" class="btn btn-ghost">
-              <span class="btn-icon">💬</span> Contact Me
-            </a>
-          </div>
+    <!-- ===== BENTO HERO GRID (TOP ONLY) ===== -->
+    <div class="bento-hero-grid">
+      <!-- Hero Card (2×2) -->
+      <div class="bento-card bento-2x2 bento-hero" id="hero">
+        <span class="bento-label">AI Engineer</span>
+        <p class="hero-greeting">Hello, I'm</p>
+        <h1 class="hero-name">Kunjan <span class="gradient-text">Minama</span></h1>
+        <div class="hero-typing-wrapper">
+          <span class="hero-typing gradient-text" id="typing-text">AI Systems</span><span class="typing-cursor"></span>
         </div>
-
-        <!-- Profile Image -->
-        <div class="hero-image-wrapper">
-          <div class="hero-image-glow"></div>
-          <div class="hero-image-ring">
-            <img src="assets/profile.png" alt="Kunjan Minama — AI Engineer" class="hero-image" />
-          </div>
-          <div class="hero-image-badges">
-            <div class="floating-badge floating-badge-1">🧠 Agentic AI</div>
-            <div class="floating-badge floating-badge-2">⚡ LangGraph</div>
-            <div class="floating-badge floating-badge-3">🔍 RAG</div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="hero-scroll">
-      <span>Scroll</span>
-      <div class="hero-scroll-line"></div>
-    </div>
-  </section>
-
-  <!-- ======================== ABOUT ======================== -->
-  <section id="about">
-    <div class="container">
-      <div class="section-header reveal">
-        <span class="section-label">About</span>
-        <h2 class="section-title">Engineering <span class="gradient-text">AI Systems</span> That Scale</h2>
-        <p class="section-subtitle">Computer Engineering graduate building production-grade AI infrastructure.</p>
-      </div>
-
-      <div class="about-grid">
-        <div class="about-text reveal">
-          <p>
-            I'm an AI Engineer with deep expertise in building end-to-end production systems — from designing
-            multi-agent architectures and advanced RAG pipelines to deploying scalable LLM-powered APIs.
-            My focus is on engineering robust, observable, and maintainable AI solutions that solve real problems.
-          </p>
-          <p>
-            I work across the full AI stack: prompt engineering, hybrid vector search, agent orchestration
-            with LangGraph and CrewAI, model context protocol (MCP) integration, and backend infrastructure
-            with FastAPI, Docker, and AWS. Every system I build is designed for production from day one.
-          </p>
-
-          <div class="about-highlights mt-32">
-            <div class="about-highlight-card glass-card">
-              <span class="card-icon">🏗️</span>
-              <h4>Production Systems</h4>
-              <p>End-to-end AI pipelines</p>
-            </div>
-            <div class="about-highlight-card glass-card">
-              <span class="card-icon">🧠</span>
-              <h4>System Architecture</h4>
-              <p>Multi-agent design patterns</p>
-            </div>
-            <div class="about-highlight-card glass-card">
-              <span class="card-icon">⚡</span>
-              <h4>Problem Solving</h4>
-              <p>Scalable AI solutions</p>
-            </div>
-            <div class="about-highlight-card glass-card">
-              <span class="card-icon">🚢</span>
-              <h4>AI Product Dev</h4>
-              <p>Research to deployment</p>
-            </div>
-          </div>
-        </div>
-
-        <div class="about-visual reveal reveal-delay-2">
-          <div class="about-orbit">
-            <div class="about-orbit-dot"></div>
-          </div>
-          <div class="about-orbit">
-            <div class="about-orbit-dot" style="background: #8b5cf6; box-shadow: 0 0 12px rgba(139,92,246,0.4);"></div>
-          </div>
-          <div class="about-orbit">
-            <div class="about-orbit-dot" style="background: #a78bfa; box-shadow: 0 0 12px rgba(167,139,250,0.4);"></div>
-          </div>
-          <div class="about-center-text">
-            <div class="big-initials">KM</div>
-            <p>AI Engineer</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <hr class="section-divider" />
-
-  <!-- ======================== SKILLS ======================== -->
-  <section id="skills">
-    <div class="container">
-      <div class="section-header reveal">
-        <span class="section-label">Skills</span>
-        <h2 class="section-title">Technical <span class="gradient-text">Arsenal</span></h2>
-        <p class="section-subtitle">Technologies and frameworks I use to build production AI systems.</p>
-      </div>
-
-      <div class="skills-grid">
-        <!-- AI Engineering -->
-        <div class="skill-category glass-card reveal">
-          <div class="skill-category-header">
-            <div class="skill-category-icon">🧠</div>
-            <h3>AI Engineering</h3>
-          </div>
-          <div class="skill-pills">
-            <span class="skill-pill">Agentic AI</span>
-            <span class="skill-pill">RAG Pipelines</span>
-            <span class="skill-pill">Multi-Agent Systems</span>
-            <span class="skill-pill">MCP Servers</span>
-            <span class="skill-pill">Prompt Engineering</span>
-            <span class="skill-pill">LLMOps</span>
-            <span class="skill-pill">Fine-Tuning</span>
-            <span class="skill-pill">NLP</span>
-          </div>
-        </div>
-
-        <!-- Frameworks -->
-        <div class="skill-category glass-card reveal reveal-delay-1">
-          <div class="skill-category-header">
-            <div class="skill-category-icon">⚙️</div>
-            <h3>Frameworks</h3>
-          </div>
-          <div class="skill-pills">
-            <span class="skill-pill">LangChain</span>
-            <span class="skill-pill">LangGraph</span>
-            <span class="skill-pill">CrewAI</span>
-            <span class="skill-pill">AutoGen</span>
-            <span class="skill-pill">LlamaIndex</span>
-            <span class="skill-pill">LangSmith</span>
-          </div>
-        </div>
-
-        <!-- Models -->
-        <div class="skill-category glass-card reveal reveal-delay-2">
-          <div class="skill-category-header">
-            <div class="skill-category-icon">🤖</div>
-            <h3>LLM Providers</h3>
-          </div>
-          <div class="skill-pills">
-            <span class="skill-pill">OpenAI GPT</span>
-            <span class="skill-pill">Anthropic Claude</span>
-            <span class="skill-pill">Google Gemini</span>
-            <span class="skill-pill">Meta LLaMA</span>
-            <span class="skill-pill">Groq</span>
-            <span class="skill-pill">Cohere</span>
-          </div>
-        </div>
-
-        <!-- Backend -->
-        <div class="skill-category glass-card reveal">
-          <div class="skill-category-header">
-            <div class="skill-category-icon">🔧</div>
-            <h3>Backend & DevOps</h3>
-          </div>
-          <div class="skill-pills">
-            <span class="skill-pill">FastAPI</span>
-            <span class="skill-pill">REST APIs</span>
-            <span class="skill-pill">Docker</span>
-            <span class="skill-pill">CI/CD</span>
-            <span class="skill-pill">AWS</span>
-            <span class="skill-pill">Vercel</span>
-            <span class="skill-pill">Railway</span>
-          </div>
-        </div>
-
-        <!-- Databases -->
-        <div class="skill-category glass-card reveal reveal-delay-1">
-          <div class="skill-category-header">
-            <div class="skill-category-icon">🗄️</div>
-            <h3>Vector Databases</h3>
-          </div>
-          <div class="skill-pills">
-            <span class="skill-pill">Pinecone</span>
-            <span class="skill-pill">ChromaDB</span>
-            <span class="skill-pill">FAISS</span>
-            <span class="skill-pill">HuggingFace</span>
-          </div>
-        </div>
-
-        <!-- Languages & Tools -->
-        <div class="skill-category glass-card reveal reveal-delay-2">
-          <div class="skill-category-header">
-            <div class="skill-category-icon">🛠️</div>
-            <h3>Languages & Tools</h3>
-          </div>
-          <div class="skill-pills">
-            <span class="skill-pill">Python</span>
-            <span class="skill-pill">Java</span>
-            <span class="skill-pill">SQL</span>
-            <span class="skill-pill">Git/GitHub</span>
-            <span class="skill-pill">Postman</span>
-            <span class="skill-pill">n8n</span>
-            <span class="skill-pill">Power BI</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <hr class="section-divider" />
-
-  <!-- ======================== FEATURED PROJECTS ======================== -->
-  <section id="projects">
-    <div class="container">
-      <div class="section-header reveal">
-        <span class="section-label">Projects</span>
-        <h2 class="section-title">Featured <span class="gradient-text">Work</span></h2>
-        <p class="section-subtitle">Production-grade AI systems demonstrating engineering depth and impact.</p>
-      </div>
-
-      <div class="projects-grid">
-        <!-- Project 1: Multi-Agent Research Assistant -->
-        <div class="project-card glass-card reveal">
-          <div class="project-header">
-            <div>
-              <div class="project-label">Featured Project</div>
-              <h3 class="project-title">Multi-Agent AI Research Assistant</h3>
-            </div>
-            <div class="project-links">
-              <a href="https://multi-agent-ai-research-assistant.vercel.app/" class="project-link" target="_blank"
-                rel="noopener noreferrer">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
-                  <polyline points="15 3 21 3 21 9"></polyline>
-                  <line x1="10" y1="14" x2="21" y2="3"></line>
-                </svg>
-                Live Demo
-              </a>
-              <a href="https://github.com/KunjanMinama/Multi-Agent-AI-Research-Assistant-" class="project-link"
-                target="_blank" rel="noopener noreferrer">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-                  <path
-                    d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
-                </svg>
-                Repository
-              </a>
-            </div>
-          </div>
-
-          <p class="project-description">
-            A real-time, multi-agent AI research platform built with FastAPI and LangGraph. Orchestrates
-            specialized autonomous agents via an Agent-to-Agent (A2A) microservice layer to synthesize
-            complex data streams. Integrated MCP for standardized tool execution, reducing pipeline
-            latency by 35%.
-          </p>
-
-          <div class="project-tech">
-            <span class="tech-badge">LangGraph</span>
-            <span class="tech-badge">MCP</span>
-            <span class="tech-badge">FastAPI</span>
-            <span class="tech-badge">WebSockets</span>
-            <span class="tech-badge">Docker</span>
-            <span class="tech-badge">CI/CD</span>
-            <span class="tech-badge">React</span>
-            <span class="tech-badge">TypeScript</span>
-          </div>
-
-          <div class="project-highlights">
-            <div class="project-highlight">
-              <span class="check-icon">✓</span>
-              Multi-Agent A2A Architecture
-            </div>
-            <div class="project-highlight">
-              <span class="check-icon">✓</span>
-              MCP Tool Standardization
-            </div>
-            <div class="project-highlight">
-              <span class="check-icon">✓</span>
-              Real-time WebSocket Streaming
-            </div>
-            <div class="project-highlight">
-              <span class="check-icon">✓</span>
-              35% Pipeline Latency Reduction
-            </div>
-            <div class="project-highlight">
-              <span class="check-icon">✓</span>
-              95%+ Code Coverage
-            </div>
-            <div class="project-highlight">
-              <span class="check-icon">✓</span>
-              Zero Downtime Deployment
-            </div>
-          </div>
-        </div>
-
-        <!-- Project 2: MediRAG -->
-        <div class="project-card glass-card reveal">
-          <div class="project-header">
-            <div>
-              <div class="project-label">Featured Project</div>
-              <h3 class="project-title">MediRAG AI Assistant Chatbot</h3>
-            </div>
-            <div class="project-links">
-              <a href="https://kunjanminama-medirag-assistant-clientapp-ttrgwz.streamlit.app/" class="project-link"
-                target="_blank" rel="noopener noreferrer">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
-                  <polyline points="15 3 21 3 21 9"></polyline>
-                  <line x1="10" y1="14" x2="21" y2="3"></line>
-                </svg>
-                Live Demo
-              </a>
-              <a href="https://github.com/KunjanMinama/MediRAG-Assistant" class="project-link" target="_blank"
-                rel="noopener noreferrer">
-                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-                  <path
-                    d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
-                </svg>
-                Repository
-              </a>
-            </div>
-          </div>
-
-          <p class="project-description">
-            Full-stack RAG system processing medical PDFs through a 10-stage pipeline. Features hybrid
-            search combining 384-dim dense embeddings with BM25 on Pinecone Serverless, Cohere Re-ranking
-            with LangChain MAP-Reduce for multi-document reasoning, and Chain-of-Thought anti-hallucination
-            prompt engineering ensuring answers strictly grounded in documents.
-          </p>
-
-          <div class="project-tech">
-            <span class="tech-badge">FastAPI</span>
-            <span class="tech-badge">Pinecone</span>
-            <span class="tech-badge">LangChain</span>
-            <span class="tech-badge">Cohere</span>
-            <span class="tech-badge">RAGAS</span>
-            <span class="tech-badge">HuggingFace</span>
-            <span class="tech-badge">LangSmith</span>
-          </div>
-
-          <div class="project-highlights">
-            <div class="project-highlight">
-              <span class="check-icon">✓</span>
-              10-Stage Processing Pipeline
-            </div>
-            <div class="project-highlight">
-              <span class="check-icon">✓</span>
-              Hybrid Dense + BM25 Search
-            </div>
-            <div class="project-highlight">
-              <span class="check-icon">✓</span>
-              Cohere Re-ranking + MAP-Reduce
-            </div>
-            <div class="project-highlight">
-              <span class="check-icon">✓</span>
-              Sub-2s Response Latency
-            </div>
-            <div class="project-highlight">
-              <span class="check-icon">✓</span>
-              LangSmith LLMOps Observability
-            </div>
-            <div class="project-highlight">
-              <span class="check-icon">✓</span>
-              Anti-Hallucination CoT Prompting
-            </div>
-          </div>
-
-          <!-- RAGAS Metrics -->
-          <div class="project-metrics">
-            <div class="metric-card">
-              <div class="metric-value" data-metric="0.89">0</div>
-              <div class="metric-label">Faithfulness</div>
-            </div>
-            <div class="metric-card">
-              <div class="metric-value" data-metric="0.91">0</div>
-              <div class="metric-label">Relevancy</div>
-            </div>
-            <div class="metric-card">
-              <div class="metric-value" data-metric="0.87">0</div>
-              <div class="metric-label">Precision</div>
-            </div>
-            <div class="metric-card">
-              <div class="metric-value" data-metric="0.82">0</div>
-              <div class="metric-label">Recall</div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <hr class="section-divider" />
-
-  <!-- ======================== EXPERIENCE ======================== -->
-  <section id="experience">
-    <div class="container">
-      <div class="section-header reveal">
-        <span class="section-label">Experience</span>
-        <h2 class="section-title">Professional <span class="gradient-text">Journey</span></h2>
-        <p class="section-subtitle">Hands-on experience building AI solutions in production environments.</p>
-      </div>
-
-      <div class="experience-timeline reveal">
-        <div class="experience-card glass-card-static">
-          <div class="experience-card-header">
-            <div>
-              <h3 class="experience-company">BrainyBeam Technologies</h3>
-              <p class="experience-role">Data Science & ML Intern</p>
-            </div>
-            <span class="experience-date">Jan 2026 — Apr 2026</span>
-          </div>
-
-          <div class="experience-achievements">
-            <div class="achievement-item">
-              <span class="bullet">▹</span>
-              <span>Performed AQI data analysis & preprocessing; built ML models improving prediction accuracy by
-                <strong style="color: var(--success);">20%</strong>.</span>
-            </div>
-            <div class="achievement-item">
-              <span class="bullet">▹</span>
-              <span>Built data engineering pipelines integrating ML models with REST API endpoints; applied NLP-based
-                text summarization; documented workflows via CI/CD pipelines.</span>
-            </div>
-            <div class="achievement-item">
-              <span class="bullet">▹</span>
-              <span>Collaborated cross-functionally to translate business requirements into AI-driven solutions,
-                reducing reporting time by <strong style="color: var(--success);">30%</strong>.</span>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Education -->
-      <div class="mt-32 reveal">
-        <div class="section-header" style="margin-bottom: 24px;">
-          <span class="section-label">Education</span>
-        </div>
-        <div class="education-card glass-card-static">
-          <div class="education-icon">🎓</div>
-          <div class="education-info">
-            <h4>B.Tech in Computer Engineering</h4>
-            <p>Parul Institute of Engineering and Technology, Vadodara</p>
-            <p class="education-date">2022 — 2026</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <hr class="section-divider" />
-
-  <!-- ======================== GITHUB SHOWCASE ======================== -->
-  <section id="github">
-    <div class="container">
-      <div class="section-header reveal">
-        <span class="section-label">Open Source</span>
-        <h2 class="section-title">GitHub <span class="gradient-text">Showcase</span></h2>
-        <p class="section-subtitle">Live data pulled from GitHub — repositories, languages, and activity.</p>
-      </div>
-
-      <!-- Stats — populated dynamically -->
-      <div class="github-stats reveal" id="github-stats">
-        <!-- JS fills this -->
-      </div>
-
-      <!-- Repos — populated dynamically -->
-      <div class="github-repos-grid reveal" id="github-repos">
-        <!-- JS fills this -->
-      </div>
-
-      <!-- Language Bar -->
-      <div class="github-lang-bar reveal mt-32" id="github-languages">
-        <!-- JS fills this -->
-      </div>
-
-      <div class="text-center mt-32 reveal">
-        <a href="https://github.com/KunjanMinama" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
-            <path
-              d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
-          </svg>
-          View Full Profile
-        </a>
-      </div>
-    </div>
-  </section>
-
-  <hr class="section-divider" />
-
-  <!-- ======================== AI ARCHITECTURE ======================== -->
-  <section id="architecture">
-    <div class="container">
-      <div class="section-header reveal">
-        <span class="section-label">Architecture</span>
-        <h2 class="section-title">System <span class="gradient-text">Design Patterns</span></h2>
-        <p class="section-subtitle">Core AI architectures I design and implement in production.</p>
-      </div>
-
-      <div class="arch-grid">
-        <!-- RAG Pipeline -->
-        <div class="arch-card glass-card reveal">
-          <h3>🔍 RAG Pipeline</h3>
-          <div class="arch-flow">
-            <div class="arch-node">📄 Documents Ingestion</div>
-            <div class="arch-connector"></div>
-            <div class="arch-node">✂️ Chunking + Preprocessing</div>
-            <div class="arch-connector"></div>
-            <div class="arch-node primary">🧬 Vector Embeddings</div>
-            <div class="arch-connector"></div>
-            <div class="arch-node">🗄️ Pinecone / FAISS</div>
-            <div class="arch-connector"></div>
-            <div class="arch-node">🔎 Hybrid Retrieval + Re-ranking</div>
-            <div class="arch-connector"></div>
-            <div class="arch-node primary">🤖 LLM Generation</div>
-            <div class="arch-connector"></div>
-            <div class="arch-node">✅ Grounded Answer</div>
-          </div>
-        </div>
-
-        <!-- Agentic Workflow -->
-        <div class="arch-card glass-card reveal reveal-delay-1">
-          <h3>🤖 Agentic Workflow</h3>
-          <div class="arch-flow">
-            <div class="arch-node">👤 User Query</div>
-            <div class="arch-connector"></div>
-            <div class="arch-node primary">🧠 Planner Agent</div>
-            <div class="arch-connector"></div>
-            <div class="arch-node">🔧 Tool Selection</div>
-            <div class="arch-connector"></div>
-            <div class="arch-node">⚡ Execution</div>
-            <div class="arch-connector"></div>
-            <div class="arch-node primary">🔄 Reflection & Validation</div>
-            <div class="arch-connector"></div>
-            <div class="arch-node">📤 Structured Output</div>
-          </div>
-        </div>
-
-        <!-- Multi-Agent System -->
-        <div class="arch-card glass-card reveal">
-          <h3>🌐 Multi-Agent System</h3>
-          <div class="arch-tree">
-            <div class="arch-node primary" style="width: 80%;">🎯 Orchestrator Agent</div>
-            <div class="arch-connector"></div>
-            <div class="arch-tree-branches">
-              <div class="arch-node">🔬 Research Agent</div>
-              <div class="arch-node">📊 Analyst Agent</div>
-              <div class="arch-node">✍️ Writer Agent</div>
-            </div>
-            <div class="arch-connector"></div>
-            <div class="arch-node" style="width: 80%;">💾 Shared Memory / State</div>
-            <div class="arch-connector"></div>
-            <div class="arch-node primary" style="width: 80%;">📡 A2A Communication Layer</div>
-          </div>
-        </div>
-
-        <!-- MCP Architecture -->
-        <div class="arch-card glass-card reveal reveal-delay-1">
-          <h3>🔌 MCP Architecture</h3>
-          <div class="arch-flow">
-            <div class="arch-node">💻 AI Application / Host</div>
-            <div class="arch-connector"></div>
-            <div class="arch-node primary">📡 MCP Client</div>
-            <div class="arch-connector"></div>
-            <div class="arch-node">🔐 Protocol Layer (JSON-RPC)</div>
-            <div class="arch-connector"></div>
-            <div class="arch-node primary">🖥️ MCP Server</div>
-            <div class="arch-connector"></div>
-            <div class="arch-tree-branches" style="width: 100%;">
-              <div class="arch-node">🔧 Tools</div>
-              <div class="arch-node">📁 Resources</div>
-              <div class="arch-node">💡 Prompts</div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <hr class="section-divider" />
-
-  <!-- ======================== CERTIFICATIONS ======================== -->
-  <section id="certifications">
-    <div class="container">
-      <div class="section-header reveal">
-        <span class="section-label">Certifications</span>
-        <h2 class="section-title">Credentials & <span class="gradient-text">Learning</span></h2>
-      </div>
-
-      <div class="certs-grid reveal">
-        <div class="cert-card glass-card">
-          <div class="cert-icon">🤗</div>
-          <div class="cert-info">
-            <h4>HuggingFace Agents Course</h4>
-            <p>HuggingFace — AI Agents & Tool Use</p>
-          </div>
-        </div>
-
-        <div class="cert-card glass-card">
-          <div class="cert-icon">📊</div>
-          <div class="cert-info">
-            <h4>Data Analytics Job Simulation</h4>
-            <p>Deloitte — Data Analytics & Visualization</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <hr class="section-divider" />
-
-  <!-- ======================== CONTACT ======================== -->
-  <section id="contact">
-    <div class="container">
-      <div class="contact-wrapper reveal">
-        <span class="section-label">Contact</span>
-
-        <h2 class="contact-headline">
-          Let's build the future<br /><span class="gradient-text">with AI.</span>
-        </h2>
-
-        <p class="contact-subtitle">
-          Open to roles in AI Engineering, LLM Development, and Agentic AI.
-          Let's connect and build something remarkable.
+        <p class="hero-description">
+          Specializing in Agentic AI, Multi-Agent Systems, LangGraph,
+          RAG Pipelines, MCP Servers, FastAPI and LLM Applications.
         </p>
-
-        <div class="contact-links">
-          <a href="mailto:kunjanminama@gmail.com" class="contact-link-card glass-card">
-            <span class="link-icon">📧</span>
-            <span>kunjanminama@gmail.com</span>
+        <div class="hero-buttons">
+          <a href="#projects" class="btn btn-primary">
+            <span class="btn-icon">🚀</span> View Projects
           </a>
-          <a href="https://github.com/KunjanMinama" target="_blank" rel="noopener noreferrer"
-            class="contact-link-card glass-card">
-            <span class="link-icon">🐙</span>
-            <span>GitHub</span>
+          <a href="https://drive.google.com/file/d/1PtiLdS9Un6KcDbU9S5uNoPupkltbrCo0/view" class="btn btn-secondary"
+            target="_blank" rel="noopener noreferrer">
+            <span class="btn-icon">📄</span> Resume
           </a>
-          <a href="https://www.linkedin.com/in/kunjan-minama-1b023b342" target="_blank" rel="noopener noreferrer"
-            class="contact-link-card glass-card">
-            <span class="link-icon">💼</span>
-            <span>LinkedIn</span>
+          <a href="#contact" class="btn btn-ghost">
+            <span class="btn-icon">💬</span> Contact
           </a>
         </div>
-
-        <div class="contact-cta-button">
-          <a href="mailto:kunjanminama@gmail.com" class="btn btn-primary" style="padding: 16px 40px; font-size: 1rem;">
-            <span class="btn-icon">🚀</span> Get In Touch
-          </a>
-        </div>
-
-        <p style="margin-top: 24px; font-size: 0.8125rem; color: var(--text-dim);">
-          📍 Vadodara, Gujarat, India
-        </p>
       </div>
-    </div>
-  </section>
 
-  <!-- ======================== FOOTER ======================== -->
+      <!-- Photo Card (1×2) -->
+      <div class="bento-card bento-1x2 bento-photo">
+        <div class="photo-ring">
+          <img src="assets/profile.png" alt="Kunjan Minama — AI Engineer" />
+          <div class="photo-badges">
+            <div class="photo-badge photo-badge-1">🧠 Agentic AI</div>
+            <div class="photo-badge photo-badge-2">⚡ LangGraph</div>
+            <div class="photo-badge photo-badge-3">🔍 RAG</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Status Card (1×1) -->
+      <div class="bento-card bento-status">
+        <div class="status-badge">
+          <span class="pulse-dot"></span>
+          Open to Work
+        </div>
+        <p class="status-text">Looking for AI Engineering<br/>& LLM Development roles</p>
+      </div>
+
+      <!-- Location Card (1×1) -->
+      <div class="bento-card bento-location">
+        <span class="location-emoji">📍</span>
+        <span class="location-city">Vadodara</span>
+        <span class="location-country">Gujarat, India</span>
+      </div>
+    </div><!-- /bento-hero-grid -->
+
+    <hr class="section-divider" />
+
+    <!-- ===== ABOUT SECTION ===== -->
+    <section id="about" class="reveal">
+      <div class="container">
+        <div class="about-grid">
+          <!-- Left: About Text -->
+          <div class="about-text">
+            <span class="section-label">About Me</span>
+            <h2 class="section-title">Engineering <span class="gradient-text">AI Systems</span> That Scale</h2>
+            <p class="mt-8">
+              AI Engineer with deep expertise in building end-to-end production systems — from
+              multi-agent architectures and advanced RAG pipelines to deploying scalable LLM-powered APIs.
+            </p>
+            <p>
+              I bridge the gap between AI research and scalable production deployments, designing systems
+              with multi-agent orchestration, advanced search optimization, and robust developer tool standardization.
+            </p>
+            <div class="about-highlights mt-24">
+              <div class="about-highlight-card glass-card">
+                <span class="card-icon">🏗️</span>
+                <h4>Production Systems</h4>
+                <p>Scalable, production-ready architectures</p>
+              </div>
+              <div class="about-highlight-card glass-card">
+                <span class="card-icon">🧠</span>
+                <h4>Multi-Agent Design</h4>
+                <p>LangGraph & orchestrator workflows</p>
+              </div>
+              <div class="about-highlight-card glass-card">
+                <span class="card-icon">⚡</span>
+                <h4>Scalable Solutions</h4>
+                <p>Fast API endpoints & caching</p>
+              </div>
+              <div class="about-highlight-card glass-card">
+                <span class="card-icon">🚢</span>
+                <h4>Research → Deploy</h4>
+                <p>Seamless pipeline operationalization</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right: Orbit Graphic -->
+          <div class="about-visual">
+            <div class="about-orbit">
+              <div class="about-orbit-dot"></div>
+            </div>
+            <div class="about-orbit">
+              <div class="about-orbit-dot"></div>
+            </div>
+            <div class="about-orbit">
+              <div class="about-orbit-dot"></div>
+            </div>
+            <div class="about-center-text">
+              <span class="big-initials">KM</span>
+              <p>AI Engineer</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <hr class="section-divider" />
+
+    <!-- ===== SKILLS SECTION ===== -->
+    <section id="skills" class="reveal">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-label">Expertise</span>
+          <h2 class="section-title">Skills & <span class="gradient-text">Technologies</span></h2>
+          <p class="section-subtitle">Proficiencies in modern AI frameworks, engineering tools, and system architecture.</p>
+        </div>
+
+        <div class="skills-grid">
+          <!-- AI Engineering -->
+          <div class="skill-category glass-card">
+            <div class="skill-category-header">
+              <div class="skill-category-icon">🧠</div>
+              <h3>AI Engineering</h3>
+            </div>
+            <div class="skill-pills">
+              <span class="skill-pill">Agentic AI</span>
+              <span class="skill-pill">RAG Pipelines</span>
+              <span class="skill-pill">Multi-Agent Systems</span>
+              <span class="skill-pill">MCP Servers</span>
+              <span class="skill-pill">Prompt Engineering</span>
+              <span class="skill-pill">LLMOps</span>
+              <span class="skill-pill">Fine-Tuning</span>
+              <span class="skill-pill">NLP</span>
+            </div>
+          </div>
+
+          <!-- Frameworks -->
+          <div class="skill-category glass-card">
+            <div class="skill-category-header">
+              <div class="skill-category-icon">⚙️</div>
+              <h3>Frameworks</h3>
+            </div>
+            <div class="skill-pills">
+              <span class="skill-pill">LangChain</span>
+              <span class="skill-pill">LangGraph</span>
+              <span class="skill-pill">CrewAI</span>
+              <span class="skill-pill">AutoGen</span>
+              <span class="skill-pill">LlamaIndex</span>
+              <span class="skill-pill">LangSmith</span>
+            </div>
+          </div>
+
+          <!-- LLM Providers -->
+          <div class="skill-category glass-card">
+            <div class="skill-category-header">
+              <div class="skill-category-icon">🤖</div>
+              <h3>LLM Providers</h3>
+            </div>
+            <div class="skill-pills">
+              <span class="skill-pill">OpenAI GPT</span>
+              <span class="skill-pill">Anthropic Claude</span>
+              <span class="skill-pill">Google Gemini</span>
+              <span class="skill-pill">Meta LLaMA</span>
+              <span class="skill-pill">Groq</span>
+              <span class="skill-pill">Cohere</span>
+            </div>
+          </div>
+
+          <!-- Backend & DevOps -->
+          <div class="skill-category glass-card">
+            <div class="skill-category-header">
+              <div class="skill-category-icon">🔧</div>
+              <h3>Backend & DevOps</h3>
+            </div>
+            <div class="skill-pills">
+              <span class="skill-pill">FastAPI</span>
+              <span class="skill-pill">REST APIs</span>
+              <span class="skill-pill">Docker</span>
+              <span class="skill-pill">CI/CD</span>
+              <span class="skill-pill">AWS</span>
+              <span class="skill-pill">Vercel</span>
+              <span class="skill-pill">Railway</span>
+            </div>
+          </div>
+
+          <!-- Vector Databases -->
+          <div class="skill-category glass-card">
+            <div class="skill-category-header">
+              <div class="skill-category-icon">🗄️</div>
+              <h3>Vector Databases</h3>
+            </div>
+            <div class="skill-pills">
+              <span class="skill-pill">Pinecone</span>
+              <span class="skill-pill">ChromaDB</span>
+              <span class="skill-pill">FAISS</span>
+              <span class="skill-pill">HuggingFace</span>
+            </div>
+          </div>
+
+          <!-- Languages & Tools -->
+          <div class="skill-category glass-card">
+            <div class="skill-category-header">
+              <div class="skill-category-icon">🛠️</div>
+              <h3>Languages & Tools</h3>
+            </div>
+            <div class="skill-pills">
+              <span class="skill-pill">Python</span>
+              <span class="skill-pill">Java</span>
+              <span class="skill-pill">SQL</span>
+              <span class="skill-pill">Git/GitHub</span>
+              <span class="skill-pill">Postman</span>
+              <span class="skill-pill">n8n</span>
+              <span class="skill-pill">Power BI</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <hr class="section-divider" />
+
+    <!-- ===== PROJECTS SECTION ===== -->
+    <section id="projects" class="reveal">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-label">Portfolio</span>
+          <h2 class="section-title">Featured <span class="gradient-text">AI Projects</span></h2>
+          <p class="section-subtitle">Production-grade AI systems, RAG pipelines, and multi-agent platforms.</p>
+        </div>
+
+        <div class="projects-grid">
+          <!-- Project 1 -->
+          <div class="project-card glass-card">
+            <div class="project-header">
+              <div>
+                <div class="project-label">Featured Project</div>
+                <h3 class="project-title">Multi-Agent AI Research Assistant</h3>
+              </div>
+              <div class="project-links">
+                <a href="https://multi-agent-ai-research-assistant.vercel.app/" class="project-link" target="_blank"
+                  rel="noopener noreferrer">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                    <polyline points="15 3 21 3 21 9"></polyline>
+                    <line x1="10" y1="14" x2="21" y2="3"></line>
+                  </svg>
+                  Demo
+                </a>
+                <a href="https://github.com/KunjanMinama/Multi-Agent-AI-Research-Assistant-" class="project-link"
+                  target="_blank" rel="noopener noreferrer">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+                    <path
+                      d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
+                  </svg>
+                  Code
+                </a>
+              </div>
+            </div>
+
+            <p class="project-description">
+              A real-time, multi-agent AI research platform built with FastAPI and LangGraph. Orchestrates
+              specialized autonomous agents via an Agent-to-Agent (A2A) microservice layer to synthesize
+              complex data streams. Integrated MCP for standardized tool execution, reducing pipeline
+              latency by 35%.
+            </p>
+
+            <div class="project-tech">
+              <span class="tech-badge">LangGraph</span>
+              <span class="tech-badge">MCP</span>
+              <span class="tech-badge">FastAPI</span>
+              <span class="tech-badge">WebSockets</span>
+              <span class="tech-badge">Docker</span>
+              <span class="tech-badge">CI/CD</span>
+              <span class="tech-badge">React</span>
+              <span class="tech-badge">TypeScript</span>
+            </div>
+
+            <div class="project-highlights">
+              <div class="project-highlight"><span class="check-icon">✓</span> Multi-Agent A2A Architecture</div>
+              <div class="project-highlight"><span class="check-icon">✓</span> MCP Tool Standardization</div>
+              <div class="project-highlight"><span class="check-icon">✓</span> Real-time WebSocket Streaming</div>
+              <div class="project-highlight"><span class="check-icon">✓</span> 35% Pipeline Latency Reduction</div>
+              <div class="project-highlight"><span class="check-icon">✓</span> 95%+ Code Coverage</div>
+              <div class="project-highlight"><span class="check-icon">✓</span> Zero Downtime Deployment</div>
+            </div>
+          </div>
+
+          <!-- Project 2 -->
+          <div class="project-card glass-card">
+            <div class="project-header">
+              <div>
+                <div class="project-label">Featured Project</div>
+                <h3 class="project-title">MediRAG AI Assistant Chatbot</h3>
+              </div>
+              <div class="project-links">
+                <a href="https://kunjanminama-medirag-assistant-clientapp-ttrgwz.streamlit.app/" class="project-link"
+                  target="_blank" rel="noopener noreferrer">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                    <polyline points="15 3 21 3 21 9"></polyline>
+                    <line x1="10" y1="14" x2="21" y2="3"></line>
+                  </svg>
+                  Demo
+                </a>
+                <a href="https://github.com/KunjanMinama/MediRAG-Assistant" class="project-link" target="_blank"
+                  rel="noopener noreferrer">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+                    <path
+                      d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
+                  </svg>
+                  Code
+                </a>
+              </div>
+            </div>
+
+            <p class="project-description">
+              Full-stack RAG system processing medical PDFs through a 10-stage pipeline. Features hybrid
+              search combining 384-dim dense embeddings with BM25 on Pinecone Serverless, Cohere Re-ranking
+              with LangChain MAP-Reduce for multi-document reasoning, and Chain-of-Thought anti-hallucination
+              prompt engineering.
+            </p>
+
+            <div class="project-tech">
+              <span class="tech-badge">FastAPI</span>
+              <span class="tech-badge">Pinecone</span>
+              <span class="tech-badge">LangChain</span>
+              <span class="tech-badge">Cohere</span>
+              <span class="tech-badge">RAGAS</span>
+              <span class="tech-badge">HuggingFace</span>
+              <span class="tech-badge">LangSmith</span>
+            </div>
+
+            <div class="project-highlights">
+              <div class="project-highlight"><span class="check-icon">✓</span> 10-Stage Processing Pipeline</div>
+              <div class="project-highlight"><span class="check-icon">✓</span> Hybrid Dense + BM25 Search</div>
+              <div class="project-highlight"><span class="check-icon">✓</span> Cohere Re-ranking + MAP-Reduce</div>
+              <div class="project-highlight"><span class="check-icon">✓</span> Sub-2s Response Latency</div>
+              <div class="project-highlight"><span class="check-icon">✓</span> LangSmith LLMOps Observability</div>
+              <div class="project-highlight"><span class="check-icon">✓</span> Anti-Hallucination CoT Prompting</div>
+            </div>
+
+            <!-- RAGAS Metrics -->
+            <div class="project-metrics">
+              <div class="metric-card">
+                <div class="metric-value" data-metric="0.89">0</div>
+                <div class="metric-label">Faithfulness</div>
+              </div>
+              <div class="metric-card">
+                <div class="metric-value" data-metric="0.91">0</div>
+                <div class="metric-label">Relevancy</div>
+              </div>
+              <div class="metric-card">
+                <div class="metric-value" data-metric="0.87">0</div>
+                <div class="metric-label">Precision</div>
+              </div>
+              <div class="metric-card">
+                <div class="metric-value" data-metric="0.82">0</div>
+                <div class="metric-label">Recall</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <hr class="section-divider" />
+
+    <!-- ===== EXPERIENCE SECTION ===== -->
+    <section id="experience" class="reveal">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-label">Journey</span>
+          <h2 class="section-title">Professional <span class="gradient-text">Experience</span></h2>
+          <p class="section-subtitle">Internships and development work in AI, ML, and data engineering.</p>
+        </div>
+
+        <!-- Experience Timeline -->
+        <div class="experience-timeline">
+          <div class="experience-card glass-card">
+            <div class="experience-card-header">
+              <div>
+                <h3 class="experience-company">BrainyBeam Technologies</h3>
+                <p class="experience-role">Data Science & ML Intern</p>
+              </div>
+              <span class="experience-date">Jan 2026 — Apr 2026</span>
+            </div>
+            <div class="experience-achievements">
+              <div class="achievement-item">
+                <span class="bullet">▹</span>
+                <span>Performed AQI data analysis & preprocessing; built ML models improving prediction accuracy by
+                  <strong style="color: var(--success);">20%</strong>.</span>
+              </div>
+              <div class="achievement-item">
+                <span class="bullet">▹</span>
+                <span>Built data engineering pipelines integrating ML models with REST API endpoints; applied NLP-based
+                  text summarization; documented workflows via CI/CD pipelines.</span>
+              </div>
+              <div class="achievement-item">
+                <span class="bullet">▹</span>
+                <span>Collaborated cross-functionally to translate business requirements into AI-driven solutions,
+                  reducing reporting time by <strong style="color: var(--success);">30%</strong>.</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Education & Certifications Row -->
+        <div class="about-grid mt-32">
+          <!-- Education Column -->
+          <div class="education-section">
+            <h3 class="text-center mt-16">Education</h3>
+            <div class="education-card glass-card mt-16">
+              <div class="education-icon">🎓</div>
+              <div class="education-info">
+                <h4>B.Tech in Computer Engineering</h4>
+                <p>Parul Institute of Engineering and Technology, Vadodara</p>
+                <div class="education-date">2022 — 2026</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Certifications Column -->
+          <div class="certs-section">
+            <h3 class="text-center mt-16">Certifications</h3>
+            <div class="certs-grid mt-16">
+              <div class="cert-card glass-card">
+                <div class="cert-icon">🤗</div>
+                <div class="cert-info">
+                  <h4>HuggingFace Agents Course</h4>
+                  <p>AI Agents & Tool Use</p>
+                </div>
+              </div>
+              <div class="cert-card glass-card">
+                <div class="cert-icon">📊</div>
+                <div class="cert-info">
+                  <h4>Data Analytics Simulation</h4>
+                  <p>Deloitte — Analytics & Viz</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <hr class="section-divider" />
+
+    <!-- ===== GITHUB SECTION ===== -->
+    <section id="github" class="reveal">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-label">Activity</span>
+          <h2 class="section-title">Open Source <span class="gradient-text">Presence</span></h2>
+          <p class="section-subtitle">Live statistics, repository metrics, and languages directly from the GitHub API.</p>
+        </div>
+
+        <!-- Stats Grid (Dynamic) -->
+        <div class="github-stats" id="github-stats">
+          <!-- JavaScript dynamic fill -->
+        </div>
+
+        <!-- Languages Bar (Dynamic) -->
+        <div class="github-lang-bar glass-card" id="github-languages">
+          <span class="bento-label">Languages</span>
+          <!-- JavaScript dynamic fill -->
+        </div>
+
+        <!-- Repositories Grid (Dynamic) -->
+        <h3 class="mt-32 mb-16 text-center">Featured Repositories</h3>
+        <div class="github-repos-grid" id="github-repos">
+          <!-- JavaScript dynamic fill -->
+        </div>
+
+        <div class="text-center mt-32">
+          <a href="https://github.com/KunjanMinama" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+              <path
+                d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
+            </svg>
+            View Full Profile
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <hr class="section-divider" />
+
+    <!-- ===== SYSTEM ARCHITECTURE SECTION ===== -->
+    <section id="architecture" class="reveal">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-label">Architecture</span>
+          <h2 class="section-title">System <span class="gradient-text">Design</span></h2>
+          <p class="section-subtitle">High-level blueprints of the agentic and retrieval systems built for production use cases.</p>
+        </div>
+
+        <div class="arch-grid">
+          <!-- RAG Pipeline -->
+          <div class="arch-card glass-card">
+            <h3>🔍 RAG Pipeline</h3>
+            <div class="arch-flow">
+              <div class="arch-node">📄 Ingestion</div>
+              <div class="arch-connector"></div>
+              <div class="arch-node primary">🧬 Embeddings</div>
+              <div class="arch-connector"></div>
+              <div class="arch-node">🔎 Retrieval + Re-rank</div>
+              <div class="arch-connector"></div>
+              <div class="arch-node primary">🤖 LLM Generation</div>
+            </div>
+          </div>
+
+          <!-- Multi-Agent System -->
+          <div class="arch-card glass-card">
+            <h3>🌐 Multi-Agent System</h3>
+            <div class="arch-tree">
+              <div class="arch-node primary" style="width: 85%;">🎯 Orchestrator</div>
+              <div class="arch-connector"></div>
+              <div class="arch-tree-branches">
+                <div class="arch-node">🔬 Research</div>
+                <div class="arch-node">📊 Analyst</div>
+                <div class="arch-node">✍️ Writer</div>
+              </div>
+              <div class="arch-connector"></div>
+              <div class="arch-node" style="width: 85%;">📡 A2A Layer</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <hr class="section-divider" />
+
+    <!-- ===== CONTACT SECTION ===== -->
+    <section id="contact" class="reveal">
+      <div class="container">
+        <div class="contact-wrapper">
+          <span class="section-label">Contact</span>
+          <h2 class="contact-headline">
+            Let's build the future<br/><span class="gradient-text">with AI.</span>
+          </h2>
+          <p class="contact-subtitle">
+            Open to roles in AI Engineering, LLM Development, and Agentic AI.
+            Let's connect and build something remarkable.
+          </p>
+
+          <div class="contact-links">
+            <a href="mailto:kunjanminama@gmail.com" class="contact-link-card glass-card">
+              <span class="link-icon">📧</span>
+              <span>kunjanminama@gmail.com</span>
+            </a>
+            <a href="https://github.com/KunjanMinama" target="_blank" rel="noopener noreferrer" class="contact-link-card glass-card">
+              <span class="link-icon">🐙</span>
+              <span>GitHub</span>
+            </a>
+            <a href="https://www.linkedin.com/in/kunjan-minama-1b023b342" target="_blank" rel="noopener noreferrer"
+              class="contact-link-card glass-card">
+              <span class="link-icon">💼</span>
+              <span>LinkedIn</span>
+            </a>
+          </div>
+
+          <div class="contact-cta-button">
+            <a href="mailto:kunjanminama@gmail.com" class="btn btn-primary">
+              <span class="btn-icon">🚀</span> Get In Touch
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ===== FOOTER ===== -->
   <footer class="footer">
     <div class="container">
       <p class="footer-text">
-        © 2026 Kunjan Minama. Engineered with precision.
+        © 2026 Kunjan Minama · Engineered with precision
       </p>
       <div class="footer-links">
-        <a href="https://github.com/KunjanMinama" target="_blank" rel="noopener noreferrer">GitHub</a>
-        <a href="mailto:kunjanminama@gmail.com">Email</a>
         <a href="#hero">Back to Top ↑</a>
       </div>
     </div>
@@ -775,6 +685,7 @@
   <script src="js/particles.js"></script>
   <script src="js/github.js"></script>
   <script src="js/main.js"></script>
+
 </body>
 
 </html>

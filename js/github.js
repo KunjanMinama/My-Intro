@@ -1,5 +1,5 @@
 /* ============================================================
-   GITHUB API INTEGRATION
+   GITHUB API INTEGRATION — Bento Card Format
    Fetches repos, stats, and languages from GitHub
    ============================================================ */
 
@@ -21,7 +21,7 @@ const LANG_COLORS = {
   Shell: '#89e051',
   Dockerfile: '#384d54',
   Makefile: '#427819',
-  default: '#6366f1',
+  default: '#818cf8',
 };
 
 function getLanguageColor(lang) {
@@ -95,6 +95,7 @@ function computeLanguageStats(repos) {
   return sorted;
 }
 
+/* ---- Render GitHub Stats (mini bento format) ---- */
 function renderGitHubStats(user, repos) {
   const container = document.getElementById('github-stats');
   if (!container) return;
@@ -105,17 +106,17 @@ function renderGitHubStats(user, repos) {
   const languages = new Set(ownRepos.map((r) => r.language).filter(Boolean));
 
   const stats = [
-    { value: user.public_repos, label: 'Repositories' },
-    { value: totalStars, label: 'Total Stars' },
-    { value: totalForks, label: 'Total Forks' },
-    { value: languages.size, label: 'Languages' },
+    { value: user.public_repos, label: 'Repos' },
+    { value: totalStars, label: 'Stars' },
+    { value: totalForks, label: 'Forks' },
+    { value: languages.size, label: 'Langs' },
   ];
 
   container.innerHTML = stats
     .map(
       (s) => `
       <div class="github-stat-card glass-card">
-        <div class="github-stat-value" data-count="${s.value}">${s.value}</div>
+        <div class="github-stat-value">${s.value}</div>
         <div class="github-stat-label">${s.label}</div>
       </div>
     `
@@ -123,11 +124,11 @@ function renderGitHubStats(user, repos) {
     .join('');
 }
 
+/* ---- Render GitHub Repos (mini cards) ---- */
 function renderGitHubRepos(repos) {
   const container = document.getElementById('github-repos');
   if (!container) return;
 
-  // Show top 6 non-forked repos sorted by updated
   const featured = repos
     .filter((r) => !r.fork)
     .sort((a, b) => new Date(b.updated_at) - new Date(a.updated_at))
@@ -138,12 +139,12 @@ function renderGitHubRepos(repos) {
       (repo) => `
       <a href="${repo.html_url}" target="_blank" rel="noopener noreferrer" class="github-repo-card glass-card">
         <div class="repo-name">
-          <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+          <svg width="14" height="14" viewBox="0 0 16 16" fill="currentColor">
             <path fill-rule="evenodd" d="M2 2.5A2.5 2.5 0 014.5 0h8.75a.75.75 0 01.75.75v12.5a.75.75 0 01-.75.75h-2.5a.75.75 0 110-1.5h1.75v-2h-8a1 1 0 00-.714 1.7.75.75 0 01-1.072 1.05A2.495 2.495 0 012 11.5v-9zm10.5-1V9h-8c-.356 0-.694.074-1 .208V2.5a1 1 0 011-1h8z"/>
           </svg>
           ${repo.name}
         </div>
-        <div class="repo-description">${repo.description || 'No description provided.'}</div>
+        <div class="repo-description">${repo.description || 'No description.'}</div>
         <div class="repo-meta">
           ${
             repo.language
@@ -154,7 +155,6 @@ function renderGitHubRepos(repos) {
               : ''
           }
           <span class="repo-meta-item">⭐ ${repo.stargazers_count}</span>
-          <span class="repo-meta-item">🍴 ${repo.forks_count}</span>
         </div>
       </a>
     `
@@ -162,6 +162,7 @@ function renderGitHubRepos(repos) {
     .join('');
 }
 
+/* ---- Render Language Bar ---- */
 function renderLanguageBar(repos) {
   const container = document.getElementById('github-languages');
   if (!container) return;
@@ -184,12 +185,18 @@ function renderLanguageBar(repos) {
     )
     .join('');
 
+  // Preserve the existing label
+  const existingLabel = container.querySelector('.bento-label');
+  const labelHTML = existingLabel ? existingLabel.outerHTML : '';
+
   container.innerHTML = `
+    ${labelHTML}
     <div class="lang-bar-track">${barSegments}</div>
     <div class="lang-bar-legend">${legendItems}</div>
   `;
 }
 
+/* ---- Fallback ---- */
 function renderFallback() {
   const statsContainer = document.getElementById('github-stats');
   const reposContainer = document.getElementById('github-repos');
@@ -197,10 +204,10 @@ function renderFallback() {
 
   if (statsContainer) {
     const fallbackStats = [
-      { value: '10+', label: 'Repositories' },
-      { value: '—', label: 'Total Stars' },
-      { value: '—', label: 'Total Forks' },
-      { value: '5+', label: 'Languages' },
+      { value: '10+', label: 'Repos' },
+      { value: '—', label: 'Stars' },
+      { value: '—', label: 'Forks' },
+      { value: '5+', label: 'Langs' },
     ];
     statsContainer.innerHTML = fallbackStats
       .map(
@@ -216,14 +223,17 @@ function renderFallback() {
 
   if (reposContainer) {
     reposContainer.innerHTML = `
-      <a href="https://github.com/${GITHUB_USERNAME}" target="_blank" rel="noopener noreferrer" class="github-repo-card glass-card" style="grid-column: 1 / -1; text-align: center; padding: 40px;">
+      <a href="https://github.com/${GITHUB_USERNAME}" target="_blank" rel="noopener noreferrer" class="github-repo-card glass-card" style="grid-column: 1 / -1; text-align: center; padding: 32px;">
         <div class="repo-name" style="justify-content: center;">Visit GitHub Profile →</div>
-        <div class="repo-description" style="max-width: 400px; margin: 8px auto 0;">View all repositories, contributions, and activity on GitHub.</div>
+        <div class="repo-description" style="max-width: 300px; margin: 6px auto 0;">View all repositories and activity on GitHub.</div>
       </a>
     `;
   }
 
-  if (langContainer) langContainer.innerHTML = '';
+  if (langContainer) {
+    const existingLabel = langContainer.querySelector('.bento-label');
+    langContainer.innerHTML = existingLabel ? existingLabel.outerHTML : '';
+  }
 }
 
 // Initialize

@@ -1,37 +1,76 @@
 /* ============================================================
-   MAIN JS — Navigation, Scroll, Animations, Typing Effect
+   MAIN JS — Bento Grid: Cursor Glow, Card Tilt, Staggered
+   Reveal, Floating Nav, Typing Effect, Metric Counters
    ============================================================ */
 
 document.addEventListener('DOMContentLoaded', () => {
-  initNavigation();
-  initScrollReveal();
+  initCursorGlow();
+  initFloatingNav();
+  initStaggeredReveal();
+  initCardTilt();
   initTypingAnimation();
   initMetricCounters();
   initSmoothScroll();
 });
 
-/* ---- NAVIGATION ---- */
-function initNavigation() {
-  const navbar = document.querySelector('.navbar');
-  const toggle = document.querySelector('.nav-toggle');
-  const mobileMenu = document.querySelector('.mobile-menu');
-  const navLinks = document.querySelectorAll('.nav-links a, .mobile-menu a');
+/* ---- CURSOR GLOW ---- */
+function initCursorGlow() {
+  const glow = document.getElementById('cursor-glow');
+  if (!glow) return;
 
-  // Scroll effect
-  let lastScroll = 0;
-  window.addEventListener('scroll', () => {
-    const scrollY = window.scrollY;
+  // Only on desktop
+  if (window.matchMedia('(pointer: fine)').matches) {
+    let mouseX = 0, mouseY = 0;
+    let glowX = 0, glowY = 0;
 
-    if (scrollY > 50) {
-      navbar.classList.add('scrolled');
-    } else {
-      navbar.classList.remove('scrolled');
+    document.addEventListener('mousemove', (e) => {
+      mouseX = e.clientX;
+      mouseY = e.clientY;
+      glow.classList.add('active');
+    });
+
+    document.addEventListener('mouseleave', () => {
+      glow.classList.remove('active');
+    });
+
+    // Smooth follow with lerp
+    function animateGlow() {
+      glowX += (mouseX - glowX) * 0.12;
+      glowY += (mouseY - glowY) * 0.12;
+      glow.style.left = glowX + 'px';
+      glow.style.top = glowY + 'px';
+      requestAnimationFrame(animateGlow);
     }
 
-    lastScroll = scrollY;
+    animateGlow();
+  }
+}
 
-    // Update active nav link
-    updateActiveNavLink();
+/* ---- FLOATING NAV ---- */
+function initFloatingNav() {
+  const nav = document.getElementById('floating-nav');
+  const toggle = document.getElementById('nav-toggle');
+  const mobileMenu = document.getElementById('mobile-menu');
+  const navLinks = document.querySelectorAll('.nav-links a, .mobile-menu a');
+
+  if (!nav) return;
+
+  // Scroll effect
+  let scrollTicking = false;
+
+  window.addEventListener('scroll', () => {
+    if (!scrollTicking) {
+      window.requestAnimationFrame(() => {
+        if (window.scrollY > 60) {
+          nav.classList.add('scrolled');
+        } else {
+          nav.classList.remove('scrolled');
+        }
+        updateActiveNavLink();
+        scrollTicking = false;
+      });
+      scrollTicking = true;
+    }
   });
 
   // Mobile toggle
@@ -42,7 +81,6 @@ function initNavigation() {
       document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
     });
 
-    // Close mobile menu on link click
     mobileMenu.querySelectorAll('a').forEach((link) => {
       link.addEventListener('click', () => {
         toggle.classList.remove('active');
@@ -54,14 +92,14 @@ function initNavigation() {
 }
 
 function updateActiveNavLink() {
-  const sections = document.querySelectorAll('section[id]');
+  const elements = document.querySelectorAll('.bento-card[id], section[id]');
   const navLinks = document.querySelectorAll('.nav-links a');
-  const scrollPos = window.scrollY + 200;
+  const scrollPos = window.scrollY + 250; // offset slightly for active section triggering
 
-  sections.forEach((section) => {
-    const top = section.offsetTop;
-    const height = section.offsetHeight;
-    const id = section.getAttribute('id');
+  elements.forEach((el) => {
+    const top = el.offsetTop;
+    const height = el.offsetHeight;
+    const id = el.getAttribute('id');
 
     if (scrollPos >= top && scrollPos < top + height) {
       navLinks.forEach((link) => {
@@ -79,39 +117,72 @@ function initSmoothScroll() {
   document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
     anchor.addEventListener('click', function (e) {
       e.preventDefault();
-      const target = document.querySelector(this.getAttribute('href'));
+      const href = this.getAttribute('href');
+      if (href === '#') {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+        return;
+      }
+      const target = document.querySelector(href);
       if (target) {
-        const offset = 80; // navbar height
+        const offset = 80;
         const top = target.getBoundingClientRect().top + window.scrollY - offset;
-        window.scrollTo({
-          top,
-          behavior: 'smooth',
-        });
+        window.scrollTo({ top, behavior: 'smooth' });
       }
     });
   });
 }
 
-/* ---- SCROLL REVEAL ---- */
-function initScrollReveal() {
-  const reveals = document.querySelectorAll('.reveal');
+/* ---- STAGGERED REVEAL ---- */
+function initStaggeredReveal() {
+  const elements = document.querySelectorAll('.bento-card, .reveal');
 
   const observer = new IntersectionObserver(
     (entries) => {
-      entries.forEach((entry) => {
+      entries.forEach((entry, index) => {
         if (entry.isIntersecting) {
-          entry.target.classList.add('visible');
+          // Stagger the reveal by index within the batch
+          const delay = index * 80;
+          setTimeout(() => {
+            entry.target.classList.add('visible');
+          }, delay);
           observer.unobserve(entry.target);
         }
       });
     },
     {
-      threshold: 0.1,
-      rootMargin: '0px 0px -50px 0px',
+      threshold: 0.05, // trigger reveal slightly earlier
+      rootMargin: '0px 0px -40px 0px',
     }
   );
 
-  reveals.forEach((el) => observer.observe(el));
+  elements.forEach((el) => observer.observe(el));
+}
+
+/* ---- CARD TILT (3D Perspective) ---- */
+function initCardTilt() {
+  // Only on desktop
+  if (!window.matchMedia('(pointer: fine)').matches) return;
+
+  const cards = document.querySelectorAll('.bento-card');
+
+  cards.forEach((card) => {
+    card.addEventListener('mousemove', (e) => {
+      const rect = card.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      const centerX = rect.width / 2;
+      const centerY = rect.height / 2;
+
+      const rotateX = ((y - centerY) / centerY) * -3;
+      const rotateY = ((x - centerX) / centerX) * 3;
+
+      card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.01)`;
+    });
+
+    card.addEventListener('mouseleave', () => {
+      card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) scale(1)';
+    });
+  });
 }
 
 /* ---- TYPING ANIMATION ---- */
@@ -145,12 +216,12 @@ function initTypingAnimation() {
     }
 
     if (!isDeleting && charIndex === currentTitle.length) {
-      typingSpeed = 2000; // Pause at end
+      typingSpeed = 2000;
       isDeleting = true;
     } else if (isDeleting && charIndex === 0) {
       isDeleting = false;
       titleIndex = (titleIndex + 1) % titles.length;
-      typingSpeed = 300; // Pause before next word
+      typingSpeed = 300;
     }
 
     setTimeout(type, typingSpeed);
@@ -187,8 +258,6 @@ function animateCounter(element) {
   function update(currentTime) {
     const elapsed = currentTime - start;
     const progress = Math.min(elapsed / duration, 1);
-
-    // Ease out cubic
     const eased = 1 - Math.pow(1 - progress, 3);
     const current = target * eased;
 

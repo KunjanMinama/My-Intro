@@ -1,5 +1,5 @@
 /* ============================================================
-   PARTICLE SYSTEM — Canvas Background for Hero Section
+   PARTICLE SYSTEM — Full-Page Background, Wine/Maroon Theme
    ============================================================ */
 
 class ParticleSystem {
@@ -8,9 +8,9 @@ class ParticleSystem {
     if (!this.canvas) return;
     this.ctx = this.canvas.getContext('2d');
     this.particles = [];
-    this.mouse = { x: null, y: null, radius: 120 };
-    this.particleCount = 60;
-    this.connectionDistance = 150;
+    this.mouse = { x: null, y: null, radius: 130 };
+    this.particleCount = 50;
+    this.connectionDistance = 140;
     this.animationId = null;
 
     this.init();
@@ -24,13 +24,13 @@ class ParticleSystem {
   }
 
   resize() {
-    this.canvas.width = this.canvas.offsetWidth;
-    this.canvas.height = this.canvas.offsetHeight;
+    this.canvas.width = window.innerWidth;
+    this.canvas.height = window.innerHeight;
   }
 
   createParticles() {
     this.particles = [];
-    const count = Math.min(this.particleCount, Math.floor((this.canvas.width * this.canvas.height) / 15000));
+    const count = Math.min(this.particleCount, Math.floor((this.canvas.width * this.canvas.height) / 20000));
     for (let i = 0; i < count; i++) {
       this.particles.push(new Particle(this.canvas));
     }
@@ -42,13 +42,12 @@ class ParticleSystem {
       this.createParticles();
     });
 
-    this.canvas.addEventListener('mousemove', (e) => {
-      const rect = this.canvas.getBoundingClientRect();
-      this.mouse.x = e.clientX - rect.left;
-      this.mouse.y = e.clientY - rect.top;
+    window.addEventListener('mousemove', (e) => {
+      this.mouse.x = e.clientX;
+      this.mouse.y = e.clientY;
     });
 
-    this.canvas.addEventListener('mouseleave', () => {
+    window.addEventListener('mouseleave', () => {
       this.mouse.x = null;
       this.mouse.y = null;
     });
@@ -62,9 +61,9 @@ class ParticleSystem {
         const dist = Math.sqrt(dx * dx + dy * dy);
 
         if (dist < this.connectionDistance) {
-          const opacity = (1 - dist / this.connectionDistance) * 0.15;
+          const opacity = (1 - dist / this.connectionDistance) * 0.12;
           this.ctx.beginPath();
-          this.ctx.strokeStyle = `rgba(99, 102, 241, ${opacity})`;
+          this.ctx.strokeStyle = `rgba(153, 0, 17, ${opacity})`;
           this.ctx.lineWidth = 0.5;
           this.ctx.moveTo(this.particles[i].x, this.particles[i].y);
           this.ctx.lineTo(this.particles[j].x, this.particles[j].y);
@@ -82,10 +81,10 @@ class ParticleSystem {
       const dist = Math.sqrt(dx * dx + dy * dy);
 
       if (dist < this.mouse.radius) {
-        const opacity = (1 - dist / this.mouse.radius) * 0.3;
+        const opacity = (1 - dist / this.mouse.radius) * 0.25;
         this.ctx.beginPath();
-        this.ctx.strokeStyle = `rgba(139, 92, 246, ${opacity})`;
-        this.ctx.lineWidth = 0.8;
+        this.ctx.strokeStyle = `rgba(230, 0, 0, ${opacity})`;
+        this.ctx.lineWidth = 0.7;
         this.ctx.moveTo(p.x, p.y);
         this.ctx.lineTo(this.mouse.x, this.mouse.y);
         this.ctx.stroke();
@@ -118,16 +117,15 @@ class Particle {
   constructor(canvas) {
     this.x = Math.random() * canvas.width;
     this.y = Math.random() * canvas.height;
-    this.size = Math.random() * 2 + 0.5;
-    this.baseSpeedX = (Math.random() - 0.5) * 0.4;
-    this.baseSpeedY = (Math.random() - 0.5) * 0.4;
+    this.size = Math.random() * 1.8 + 0.4;
+    this.baseSpeedX = (Math.random() - 0.5) * 0.3;
+    this.baseSpeedY = (Math.random() - 0.5) * 0.3;
     this.speedX = this.baseSpeedX;
     this.speedY = this.baseSpeedY;
-    this.opacity = Math.random() * 0.5 + 0.1;
+    this.opacity = Math.random() * 0.4 + 0.08;
   }
 
   update(canvas, mouse) {
-    // Mouse interaction — gentle push
     if (mouse.x !== null) {
       const dx = this.x - mouse.x;
       const dy = this.y - mouse.y;
@@ -136,19 +134,17 @@ class Particle {
       if (dist < mouse.radius) {
         const force = (mouse.radius - dist) / mouse.radius;
         const angle = Math.atan2(dy, dx);
-        this.speedX += Math.cos(angle) * force * 0.2;
-        this.speedY += Math.sin(angle) * force * 0.2;
+        this.speedX += Math.cos(angle) * force * 0.15;
+        this.speedY += Math.sin(angle) * force * 0.15;
       }
     }
 
-    // Friction
     this.speedX += (this.baseSpeedX - this.speedX) * 0.02;
     this.speedY += (this.baseSpeedY - this.speedY) * 0.02;
 
     this.x += this.speedX;
     this.y += this.speedY;
 
-    // Wrap around edges
     if (this.x < 0) this.x = canvas.width;
     if (this.x > canvas.width) this.x = 0;
     if (this.y < 0) this.y = canvas.height;
@@ -158,12 +154,12 @@ class Particle {
   draw(ctx) {
     ctx.beginPath();
     ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-    ctx.fillStyle = `rgba(139, 92, 246, ${this.opacity})`;
+    ctx.fillStyle = `rgba(153, 0, 17, ${this.opacity})`;
     ctx.fill();
   }
 }
 
-// Initialize when DOM is ready
+// Initialize when DOM is ready — full page background
 document.addEventListener('DOMContentLoaded', () => {
-  new ParticleSystem('hero-particles');
+  new ParticleSystem('particles-bg');
 });
